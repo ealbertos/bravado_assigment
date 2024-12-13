@@ -7,7 +7,8 @@ class CarsFilterService
   def call
     cars = Car.all
     cars = filter_by_brand(cars)
-    filter_by_price(cars)
+    cars = filter_by_price(cars)
+    assing_match_labels(cars)
   end
 
   private
@@ -27,6 +28,12 @@ class CarsFilterService
       cars.where('price <= ?', @params[:price_max])
     else
       cars
+    end
+  end
+
+  def assing_match_labels(cars)
+    cars.each do |car|
+      car.label = CarMatchLabeler.new(@user, car).match_and_label
     end
   end
 end

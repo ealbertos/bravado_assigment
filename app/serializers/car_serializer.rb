@@ -6,7 +6,7 @@ class CarSerializer < ActiveModel::Serializer
     1
   end
 
-  def label
-    'perfect_match'
-  end
+  # def label
+  #   'perfect_match'
+  # end
 end
