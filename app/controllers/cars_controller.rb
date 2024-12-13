@@ -5,7 +5,9 @@ class CarsController < ApplicationController
     end
 
     cars = CarsFilterService.new(permitted_params, current_user).call
-    render json: cars
+    cars = Kaminari.paginate_array(cars).page(params[:page] || 1).per(20)
+
+    render json: cars, each_serializer: CarSerializer, meta: pagination_meta(cars)
   end
 
   private
@@ -16,5 +18,15 @@ class CarsController < ApplicationController
 
   def current_user
     User.find(permitted_params[:user_id])
+  end
+
+  def pagination_meta(cars)
+    {
+      current_page: cars.current_page,
+      next_page: cars.next_page,
+      prev_page: cars.prev_page,
+      total_pages: cars.total_pages,
+      total_count: cars.total_count
+    }
   end
 end
