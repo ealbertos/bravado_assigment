@@ -5,7 +5,6 @@ class CarsController < ApplicationController
     end
 
     cars = CarsFilterService.new(permitted_params, current_user).call
-
     render json: cars
   end
 
