@@ -54,8 +54,8 @@ class CarsFilterServiceTest < ActiveSupport::TestCase
       { "car_id": @is.id, "rank_score": 0.567 }
     ].to_json
 
-    WebMock.stub_request(:get, @recommendation_service.base_url)
-           .with(query: { user_id: @user.id })
-           .to_return(status: 200, body: response_body, headers: { 'Content-Type' => 'application/json' })
+    stub_request(:get, @recommendation_service.base_url)
+      .with(query: { user_id: @user.id })
+      .to_return(status: 200, body: response_body, headers: { 'Content-Type' => 'application/json' })
   end
 end
