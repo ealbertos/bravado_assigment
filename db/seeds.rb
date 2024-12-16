@@ -21,5 +21,5 @@ User.create!(
 )
 
 ApiToken.create!(
-  value: SecureRandom.hex
+  value: '9fc728ea92fc428f997b73705d31d9c8'
 )

@@ -15,7 +15,7 @@ class CarsFilterServiceTest < ActiveSupport::TestCase
     @ls = create(:car, :ls, brand: lexus)
     @is = create(:car, :is, brand: lexus)
 
-    @recommendation_service = CarRecomendationService.new
+    @recommendation_service = CarRecommendationService.new
     stub_car_recommendations_api
   end
 
@@ -24,9 +24,6 @@ class CarsFilterServiceTest < ActiveSupport::TestCase
 
     filtered_cars = service.call
     filtered_cars.each do |car|
-      puts car.label
-      puts car.price
-      puts '========================'
     end
 
     assert_equal 2, filtered_cars.count
@@ -41,9 +38,6 @@ class CarsFilterServiceTest < ActiveSupport::TestCase
 
     filtered_cars.each do |car|
       assert_includes %w[perfect_match good_match null], car.label
-    end
-
-    filtered_cars.each do |car|
       assert_not_nil car.rank_score
     end
   end

@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class CarRecomendationServiceTest < ActiveSupport::TestCase
+class CarRecommendationServiceTest < ActiveSupport::TestCase
   def setup
     @user = create(:user)
-    @service = CarRecomendationService.new
+    @service = CarRecommendationService.new
   end
 
   test 'should return car recommendations for the user' do
@@ -17,7 +17,7 @@ class CarRecomendationServiceTest < ActiveSupport::TestCase
       .with(query: { user_id: @user.id })
       .to_return(status: 200, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-    response = @service.car_recomendations(@user)
+    response = @service.car_recommendations(@user)
     recommendations = JSON.parse(response.body)
 
     assert_equal 3, recommendations.size

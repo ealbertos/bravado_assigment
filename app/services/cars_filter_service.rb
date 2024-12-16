@@ -44,10 +44,10 @@ class CarsFilterService
   end
 
   def fetch_rank_scores
-    response = CarRecomendationService.new.car_recomendations(@user)
-    car_recomendations = JSON.parse(response.body)
+    response = CarRecommendationService.new.car_recommendations(@user)
+    car_recommendations = JSON.parse(response.body)
 
-    car_recomendations.each_with_object({}) do |item, hash|
+    car_recommendations.each_with_object({}) do |item, hash|
       hash[item['car_id']] = item['rank_score']
     end
   end

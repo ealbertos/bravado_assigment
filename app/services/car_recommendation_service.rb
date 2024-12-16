@@ -1,4 +1,4 @@
-class CarRecomendationService < HttpClient
+class CarRecommendationService < HttpClient
   def base_url
     'https://bravado-images-production.s3.amazonaws.com/recomended_cars.json'
   end
@@ -10,7 +10,7 @@ class CarRecomendationService < HttpClient
     }
   end
 
-  def car_recomendations(user)
+  def car_recommendations(user)
     get(params: { user_id: user.id }, url: base_url)
   end
 end
